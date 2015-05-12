@@ -1,8 +1,18 @@
 $(document).ready(function(){
   // code in here!
     // alert("loaded");
-  render(mockData);
+  // get trending giphy data
+  $.get("http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC", render);
+	
+	$("input").keypress(function(e) {
+	    if(e.which == 13) {
+	        alert('You pressed enter!');
+	    }
+	})
+
 })
+
+
 
 function render(giphy){
   var data = giphy.data;
