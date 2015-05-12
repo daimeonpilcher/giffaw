@@ -2,17 +2,23 @@ $(document).ready(function(){
   // code in here!
     // alert("loaded");
   // get trending giphy data
-  $.get("http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC", render);
+  	console.log($.get("http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC"))
+  	$.get("http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC", render);
 	
-	$("input").keypress(function(e) {
-	    if(e.which == 13) {
-	        alert('You pressed enter!');
-	    }
+	$("input").keyup(function(e) {
+		if(e.which == 13) {
+	    	console.log("Pressed Enter") //<= Pressed Enter on the Keyboard submit Search
+	    	console.log($.get("http://api.giphy.com/v1/gifs/search?q=" + $(this).val() + "&api_key=dc6zaTOxFJmzC"))
+	    	$.get("http://api.giphy.com/v1/gifs/search?q=" + $(this).val() + "&api_key=dc6zaTOxFJmzC", search)
+		}
 	})
 
 })
 
-
+function search(giphy){
+	$("img").remove();
+	render(giphy)
+}
 
 function render(giphy){
   var data = giphy.data;
